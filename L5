@@ -1,0 +1,14 @@
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+data=np.random.rand(100).reshape(-1,1)
+lable=np.array(["class1" if x<=0.5 else "class2" for x in data[:50]])
+train_data=data[:50]
+train_lable=lable
+test_data=data[50:]
+k_Val=[1,2,3,4,5,20,30]
+for k in k_Val:
+  knn=KNeighborsClassifier(n_neighbors=k)
+  knn.fit(train_data,train_lable)
+  pred=knn.predict(test_data)
+  print(f"{k}")
+  print(pred,"\n")
